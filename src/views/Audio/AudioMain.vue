@@ -4,10 +4,12 @@
       <!--ファイルの登録-->
       <label class="fileinput">
         こちらをクリックまたは、ファイルドラッグで音楽ファイルを入れてください。
-        <input type="file" class="fileinput__none" @change="fileChange" multiple />
+        <input type="file" class="fileinput__none" multiple @change="fileChange" />
       </label>
       <div v-if="!isLoaded" class="load">
-        <p v-show="playListLen !== 0" class="load__text">{{ playListLen + 1 }}曲目を読み込み中...</p>
+        <p v-show="playListLen !== 0" class="load__text">
+          {{ playListLen + 1 }}曲目を読み込み中...
+        </p>
         <div class="load__spinner"></div>
       </div>
       <div v-else>
@@ -20,11 +22,11 @@
 </template>
 
 <script>
-import AudioDisplay from './parts/AudioDisplay'
-import AudioController from './parts/AudioController'
-import audioPlayer from '@/components/js/AudioPlayer.js'
+import AudioDisplay from './parts/AudioDisplay';
+import AudioController from './parts/AudioController';
+import audioPlayer from '@/components/js/AudioPlayer.js';
 
-let isFirstTime = true
+let isFirstTime = true;
 
 export default {
   name: 'AudioMain',
@@ -33,33 +35,33 @@ export default {
     'audio-controller': AudioController
   },
   computed: {
-    isLoaded () {
-      return this.$store.getters.isLoaded
+    isLoaded() {
+      return this.$store.getters['audioPlayer/isLoaded'];
     },
-    playListLen () {
-      return this.$store.getters.playList.length
+    playListLen() {
+      return this.$store.getters['audioPlayer/playList'].length;
     }
   },
-  mounted () {
+  mounted() {
     // デフォルトのドラッグの挙動を無効化(ファイルのプレビュー無効化)
-    document.ondragover = document.ondrop = function (e) {
-      e.preventDefault()
-    }
+    document.ondragover = document.ondrop = function(e) {
+      e.preventDefault();
+    };
   },
   methods: {
-    async fileChange (e) {
-      const FILES = e.target.files || e.dataTransfer.files
+    async fileChange(e) {
+      const FILES = e.target.files || e.dataTransfer.files;
       if (!FILES.length) {
-        return
+        return;
       }
-      await this.$store.dispatch('loadFile', FILES)
+      await this.$store.dispatch('audioPlayer/loadFile', FILES);
       if (isFirstTime) {
-        isFirstTime = false
-        audioPlayer.init()
+        isFirstTime = false;
+        audioPlayer.init();
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -93,7 +95,8 @@ export default {
   text-align: center;
 }
 
-/* 待機時のスピナー表示　*/
+/* 待機時のスピナー表示 */
+
 .load__spinner {
   width: 100px;
   height: 100px;

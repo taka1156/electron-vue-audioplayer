@@ -6,10 +6,10 @@
       <div v-show="playList.length !== 0" class="list">
         <div v-for="(song, index) in playList" :key="index">
           <div class="list__item" @click="changeIndex(index)">
-            <img :src="song.picture" class="list__img" alt="イメージ画像">
+            <img :src="song.picture" class="list__img" alt="イメージ画像" />
             <p class="list__text">
               {{ song.title.replace(/(.mp3|.m4a|.wav)/i, '') }}
-              <small>artist: {{song.artist}}</small>
+              <small>artist: {{ song.artist }}</small>
             </p>
           </div>
         </div>
@@ -19,22 +19,22 @@
 </template>
 
 <script>
-import audioPlayer from '@/components/js/AudioPlayer.js'
+import audioPlayer from '@/components/js/AudioPlayer.js';
 
 export default {
   name: 'List',
   computed: {
-    playList () {
-      return this.$store.getters.playList
+    playList() {
+      return this.$store.getters['audioPlayer/playList'];
     }
   },
   methods: {
-    changeIndex (index) {
-      audioPlayer.changeIndex(index)
-      this.$router.push('./music')
+    changeIndex(index) {
+      audioPlayer.changeIndex(index);
+      this.$router.push('./music');
     }
   }
-}
+};
 </script>
 
 <style scoped>

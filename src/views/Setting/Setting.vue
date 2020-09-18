@@ -30,57 +30,57 @@
 </template>
 
 <script>
-import ToogleSwich from './parts/ToogleSwich'
+import ToogleSwich from './parts/ToogleSwich';
 
 export default {
   name: 'Setting',
   components: {
     'toggle-swich': ToogleSwich
   },
-  data () {
+  data() {
     return {
       isFronted: false,
       isDisable: false,
       isAutoPlay: false,
       isFile: false,
       msg: ''
-    }
+    };
   },
-  created () {
-    const LOCAL_DATA = localStorage.getItem('AudioSetting')
+  created() {
+    const LOCAL_DATA = localStorage.getItem('AudioSetting');
     if (LOCAL_DATA) {
-      const SETTING = JSON.parse(LOCAL_DATA)
+      const SETTING = JSON.parse(LOCAL_DATA);
       // 初期値を代入
-      this.isFronted = SETTING.isFronted
-      this.isDisable = SETTING.isDisable
-      this.isAutoPlay = SETTING.isAutoPlay
-      this.isFile = SETTING.isFile
+      this.isFronted = SETTING.isFronted;
+      this.isDisable = SETTING.isDisable;
+      this.isAutoPlay = SETTING.isAutoPlay;
+      this.isFile = SETTING.isFile;
     }
   },
   methods: {
-    saveSetting (msg) {
+    saveSetting(msg) {
       const SETTING = {
         isFronted: this.isFronted,
         isDisable: this.isDisable,
         isAutoPlay: this.isAutoPlay,
         isFile: this.isFile
-      }
-      localStorage.setItem('AudioSetting', JSON.stringify(SETTING))
-      this.setMsg(msg)
+      };
+      localStorage.setItem('AudioSetting', JSON.stringify(SETTING));
+      this.setMsg(msg);
     },
-    resetSetting () {
-      this.isFronted = this.isDisable = this.isAutoPlay = this.isFile = false
-      this.saveSetting('初期化しました。')
+    resetSetting() {
+      this.isFronted = this.isDisable = this.isAutoPlay = this.isFile = false;
+      this.saveSetting('初期化しました。');
     },
-    setMsg (msg) {
-      this.msg = msg
+    setMsg(msg) {
+      this.msg = msg;
       const init = setTimeout(() => {
-        this.msg = ''
-        clearTimeout(init)
-      }, 1000)
+        this.msg = '';
+        clearTimeout(init);
+      }, 1000);
     }
   }
-}
+};
 </script>
 
 <style scoped>

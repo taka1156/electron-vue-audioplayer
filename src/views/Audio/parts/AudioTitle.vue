@@ -1,8 +1,8 @@
 <template>
   <div class="AudioTitle">
     <div class="title__box">
-      <p class="title__text" :class="{ 'title__box--anime': audioTitle.length > 8  }">
-          {{ audioTitle }}
+      <p class="title__text" :class="{ 'title__box--anime': audioTitle.length > 8 }">
+        {{ audioTitle }}
       </p>
     </div>
   </div>
@@ -18,7 +18,7 @@ export default {
       required: true
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -39,8 +39,8 @@ export default {
 }
 
 @keyframes flow-text {
-  from{
-      transform: translate(100%);
+  from {
+    transform: translate(100%);
   }
   to {
     transform: translate(-100%);

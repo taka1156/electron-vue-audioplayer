@@ -2,9 +2,17 @@
   <div class="AudioController">
     <div class="controller">
       <!--ループやシャッフルの制御-->
-      <button @click="loop" class="controller__btn">
-        <img v-show="!isLoop" src="@/assets/ui-icon/loop.svg" class="controller__icon--sm" />
-        <img v-show="isLoop" src="@/assets/ui-icon/loop-true.svg" class="controller__icon--sm" />
+      <button class="controller__btn" @click="loop">
+        <img
+          v-show="!isLoop"
+          src="@/assets/ui-icon/loop.svg"
+          class="controller__icon--sm"
+        />
+        <img
+          v-show="isLoop"
+          src="@/assets/ui-icon/loop-true.svg"
+          class="controller__icon--sm"
+        />
       </button>
       <button class="controller__btn">
         <img src="@/assets/ui-icon/shuffle.svg" class="controller__icon--sm" />
@@ -16,7 +24,13 @@
           <ruby>{{ format(seekInfo.end) }}</ruby>
         </div>
         <div class="flame">
-          <input type="range" v-model="seekTime" min="0" :max="seekInfo.end" step="1" />
+          <input
+            v-model="seekTime"
+            type="range"
+            min="0"
+            :max="seekInfo.end"
+            step="1"
+          />
         </div>
       </div>
       <!--トラックを戻す-->
@@ -24,11 +38,11 @@
         <img src="@/assets/ui-icon/prev.svg" class="controller__icon--lg" />
       </button>
       <!--再生-->
-      <button class="controller__btn" v-show="!isPlay" @click="play">
+      <button v-show="!isPlay" class="controller__btn" @click="play">
         <img src="@/assets/ui-icon/play.svg" class="controller__icon--lg" />
       </button>
       <!--停止-->
-      <button class="controller__btn" v-show="isPlay" @click="stop">
+      <button v-show="isPlay" class="controller__btn" @click="stop">
         <img src="@/assets/ui-icon/stop.svg" class="controller__icon--lg" />
       </button>
       <!--トラックを進める-->
@@ -38,77 +52,78 @@
       <!--音量調節-->
       <div class="controller__seek">
         <img src="@/assets/ui-icon/volume.svg" class="controller__seek--icon" />
-        <input type="range" v-model="volume" min="0" :max="1" step="0.01" />
+        <input v-model="volume" type="range" min="0" :max="1" step="0.01" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import audioPlayer from '@/components/js/AudioPlayer.js'
+/* eslint-disable vue/no-side-effects-in-computed-properties */
+import audioPlayer from '@/components/js/AudioPlayer.js';
 
 export default {
   name: 'AudioController',
-  data () {
+  data() {
     return {
       seekTime: 0, // 現在のシークバーの現在位置(再生位置)
       volume: 1
+    };
+  },
+  computed: {
+    isPlay() {
+      return this.$store.getters['audioPlayer/isPlay'];
+    },
+    isLoop() {
+      return this.$store.getters['audioPlayer/isLoop'];
+    },
+    seekInfo() {
+      const { now, end } = this.$store.getters['audioPlayer/seekInfo'];
+      this.seekTime = now;
+      return { now, end };
     }
   },
   watch: {
-    seekTime () {
+    seekTime() {
       // ユーザが操作した時のみ適用(再生時間の視覚表示にも使ってるためjs側からの操作を弾く必要がある)
       if (this.seekInfo.now !== this.seekTime) {
-        audioPlayer.ctrlSeek(this.seekTime)
+        audioPlayer.ctrlSeek(this.seekTime);
       }
     },
-    volume () {
+    volume() {
       if (this.preVolume !== this.volume) {
-        audioPlayer.ctrlVolume(this.volume)
+        audioPlayer.ctrlVolume(this.volume);
       }
     }
   },
-  computed: {
-    isPlay () {
-      return this.$store.getters.isPlay
-    },
-    isLoop () {
-      return this.$store.getters.isLoop
-    },
-    seekInfo () {
-      const {now, end} = this.$store.getters.seekInfo
-      this.seekTime = now
-      return { now, end }
-    }
-  },
-  mounted () {
-    this.volume = this.$store.getters.preVolume
+  mounted() {
+    this.volume = this.$store.getters['audioPlayer/preVolume'];
   },
   methods: {
-    next () {
-      audioPlayer.next()
+    next() {
+      audioPlayer.next();
     },
-    prev () {
-      audioPlayer.prev()
+    prev() {
+      audioPlayer.prev();
     },
-    play () {
-      audioPlayer.play()
+    play() {
+      audioPlayer.play();
     },
-    stop () {
-      audioPlayer.stop()
+    stop() {
+      audioPlayer.stop();
     },
-    loop () {
-      audioPlayer.loop()
+    loop() {
+      audioPlayer.loop();
     },
-    format (seconds) {
-      const minute = seconds !== 0 ? Math.floor(seconds / 60) : 0
-      const second = seconds !== 0 ? seconds - minute * 60 : 0
-      const formatMinute = minute < 10 ? `0${minute}` : `${minute}`
-      const formatSecond = second < 10 ? `0${second}` : `${second}`
-      return `${formatMinute}:${formatSecond}`
+    format(seconds) {
+      const minute = seconds !== 0 ? Math.floor(seconds / 60) : 0;
+      const second = seconds !== 0 ? seconds - minute * 60 : 0;
+      const formatMinute = minute < 10 ? `0${minute}` : `${minute}`;
+      const formatSecond = second < 10 ? `0${second}` : `${second}`;
+      return `${formatMinute}:${formatSecond}`;
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -117,16 +132,15 @@ button:focus {
   outline: none;
 }
 
-input[type="range"] {
+input[type='range'] {
   outline: none;
 }
 
-/* オーディオ プレイヤーのコントローラー　*/
+/* オーディオプレイヤーのコントローラー */
 .controller {
   text-align: center;
   margin: 10px auto;
   height: 140px;
-  width: 95%;
   border: groove 1px black;
 }
 
@@ -135,7 +149,7 @@ input[type="range"] {
 }
 
 /* 時間表示(シークバー) */
-.flame input[type="range"] {
+.flame input[type='range'] {
   -webkit-appearance: none;
   margin: 0 auto;
   position: relative;

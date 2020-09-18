@@ -22,7 +22,7 @@
 <script>
 export default {
   name: 'NaviBar'
-}
+};
 </script>
 
 <style scoped>

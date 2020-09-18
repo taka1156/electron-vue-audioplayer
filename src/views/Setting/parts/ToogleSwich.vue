@@ -3,11 +3,11 @@
     <div class="content">
       <!--ラベル-->
       <p class="toggle-label" @click="stateChange">
-          <slot></slot>
+        <slot></slot>
       </p>
       <!--トグルスイッチ-->
-      <div class="switch" :class="{'switch__true': flag}" @click="stateChange">
-        <div class="switch__knob" :class="{'switch__knob--true': flag}" />
+      <div class="switch" :class="{ switch__true: flag }" @click="stateChange">
+        <div class="switch__knob" :class="{ 'switch__knob--true': flag }" />
       </div>
     </div>
   </div>
@@ -23,11 +23,11 @@ export default {
     }
   },
   methods: {
-    stateChange () {
-      this.$emit('state-change')
+    stateChange() {
+      this.$emit('state-change');
     }
   }
-}
+};
 </script>
 
 <style scoped>

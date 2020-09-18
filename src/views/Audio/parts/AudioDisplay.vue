@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import AudioTitle from './AudioTitle'
+import AudioTitle from './AudioTitle';
 
 export default {
   name: 'AudioDisplay',
@@ -25,21 +25,21 @@ export default {
     'audio-title': AudioTitle
   },
   computed: {
-    isLoaded () {
-      return this.$store.getters.isLoaded
+    isLoaded() {
+      return this.$store.getters['audioPlayer/isLoaded'];
     },
-    trackInfo () {
-      return this.$store.getters.trackInfo
+    trackInfo() {
+      return this.$store.getters['audioPlayer/trackInfo'];
     },
-    playedSong () {
-      return this.$store.getters.playedSong
+    playedSong() {
+      return this.$store.getters['audioPlayer/playedSong'];
     }
   }
-}
+};
 </script>
 
 <style scoped>
-/* 再生中の曲に関する情報　*/
+/* 再生中の曲に関する情報 */
 .info {
   height: 200px;
   width: 90%;
