@@ -1,4 +1,4 @@
-# vue-electron-audioplayer
+# electron-vue-audioplayer
 
 ## Project setup
 ```
