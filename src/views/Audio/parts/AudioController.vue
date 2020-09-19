@@ -60,7 +60,7 @@
 
 <script>
 /* eslint-disable vue/no-side-effects-in-computed-properties */
-import audioPlayer from '@/components/js/AudioPlayer.js';
+import audioPlayer from '@/plugins/AudioPlayer.js';
 
 export default {
   name: 'AudioController',
