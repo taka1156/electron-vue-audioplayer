@@ -1,5 +1,5 @@
 {
-  "name": "vue-electron-audioplayer",
+  "name": "electron-vue-audioplayer",
   "version": "0.1.0",
   "private": true,
   "scripts": {
