@@ -1,4 +1,4 @@
-import { loadSong } from '@/components/js/GenSong.js';
+import { loadMusicFile } from '@/plugins/loadMusicFile.js';
 
 const state = {
   isLoaded: false, // 読み込み状態
@@ -94,7 +94,7 @@ const mutations = {
 const actions = {
   async loadFile(context, files) {
     for (let i = 0; i < files.length; i++) {
-      const SONG = await loadSong(files[i]);
+      const SONG = await loadMusicFile(files[i]);
       context.commit('addSong', SONG);
     }
     context.commit('stateChangeLoad');

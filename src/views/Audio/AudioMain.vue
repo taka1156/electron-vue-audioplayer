@@ -24,7 +24,7 @@
 <script>
 import AudioDisplay from './parts/AudioDisplay';
 import AudioController from './parts/AudioController';
-import audioPlayer from '@/components/js/AudioPlayer.js';
+import audioPlayer from '@/plugins/AudioPlayer.js';
 
 let isFirstTime = true;
 

@@ -1,4 +1,4 @@
-import store from '../../store/index.js';
+import store from '@/store/index.js';
 const audio = new Audio();
 
 // 曲データ配列およびそのコントロール、シークは、Vuexで管理(audioの実行順序の複雑さをVuex、Viewと分離)
@@ -9,7 +9,7 @@ export default {
     if (store.getters['audioPlayer/isPlay']) {
       this.stop();
     }
-    audio.src = store.getters['audioPlayer/playedSong'].path;
+    audio.src = store.getters['audioPlayer/playedSong'].music;
     audio.load();
     audio.addEventListener('loadedmetadata', () => {
       store.commit('audioPlayer/setSeekEndTime', audio.duration);

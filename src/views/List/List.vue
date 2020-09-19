@@ -8,7 +8,7 @@
           <div class="list__item" @click="changeIndex(index)">
             <img :src="song.picture" class="list__img" alt="イメージ画像" />
             <p class="list__text">
-              {{ song.title.replace(/(.mp3|.m4a|.wav)/i, '') }}
+              {{ song.title }}
               <small>artist: {{ song.artist }}</small>
             </p>
           </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import audioPlayer from '@/components/js/AudioPlayer.js';
+import audioPlayer from '@/plugins/AudioPlayer.js';
 
 export default {
   name: 'List',
