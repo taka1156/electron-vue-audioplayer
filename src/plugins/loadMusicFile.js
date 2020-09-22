@@ -2,7 +2,7 @@ const { parseBlob } = require('music-metadata-browser');
 
 // 拡張子を取り除く
 // (曲名が取り出せない時はファイル名から拡張子を抜いてタイトルとする)
-function replaceExtensionToTitle(name) {
+function replaceFileNameToTitle(name) {
   return name.replace(/(.mp3|.m4a|.wav)/i, '');
 }
 
@@ -20,14 +20,14 @@ async function shapedID3(file) {
     }
 
     return {
-      title: title || replaceExtensionToTitle(file.name),
+      title: title || replaceFileNameToTitle(file.name),
       artist: artist || '不明',
       picture: albumArtUrl || require('@/assets/Noimg.png')
     };
   } catch (e) {
     console.log(e.message);
     return {
-      title: name,
+      title: replaceFileNameToTitle(file.name),
       artist: '不明',
       picture: require('@/assets/Noimg.png')
     };
@@ -35,7 +35,7 @@ async function shapedID3(file) {
 }
 
 // 音声データ読み込み
-async function readAudioFile(file) {
+async function loadAudioFile(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => {
@@ -48,7 +48,7 @@ async function readAudioFile(file) {
 
 async function loadMusicFile(file) {
   const { title, artist, picture } = await shapedID3(file);
-  const music = await readAudioFile(file);
+  const music = await loadAudioFile(file);
   return {
     title: title,
     artist: artist,
