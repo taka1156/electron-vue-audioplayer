@@ -12,4 +12,10 @@
   display: block;
   margin: 5px auto;
 }
+
+.img--playlist {
+  height: 50px;
+  width: 20%;
+  margin: 5px;
+}
 </style>

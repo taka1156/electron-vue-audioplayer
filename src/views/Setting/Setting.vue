@@ -2,7 +2,7 @@
   <div class="Setting">
     <div class="center">
       <h4>設定</h4>
-      <div class="border" />
+      <hr />
       <!--設定の操作UI-->
       <toggle-swich :flag="isFronted" @state-change="isFronted = !isFronted">
         ウィンドウを最前面に固定
@@ -87,13 +87,13 @@ export default {
 .center {
   margin: 0 auto;
   height: 87vh;
-  width: 100%;
+  width: 95%;
   border: solid 1px white;
 }
 
-.border {
-  width: 100%;
-  border: solid 0.4px white;
+p {
+  line-height: 8px;
+  font-size: 11.2px;
 }
 
 .setting {
