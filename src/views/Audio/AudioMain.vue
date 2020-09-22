@@ -68,7 +68,7 @@ export default {
 .audio {
   margin: 0 auto;
   height: 87vh;
-  width: 100%;
+  width: 95%;
   border: solid 1px white;
 }
 

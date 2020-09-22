@@ -1,17 +1,44 @@
 <template>
   <div id="app">
     <router-view class="view"></router-view>
-    <nav-bar />
+    <audio-navigation :routes="routes" />
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/Nav/NavBar';
+import AudioNavigation from '@/components/organisms/AudioNavigation';
+import 'normalize.css';
 
 export default {
   name: 'AudioPlayer',
   components: {
-    'nav-bar': NavBar
+    'audio-navigation': AudioNavigation
+  },
+  data() {
+    return {
+      routes: [
+        {
+          name: 'Help',
+          to: '/',
+          img: require('@/assets/nav-icon/help.svg')
+        },
+        {
+          name: 'Music',
+          to: '/music',
+          img: require('@/assets/nav-icon/music.svg')
+        },
+        {
+          name: 'List',
+          to: '/list',
+          img: require('@/assets/nav-icon/list.svg')
+        },
+        {
+          name: 'Setting',
+          to: '/setting',
+          img: require('@/assets/nav-icon/setting.svg')
+        }
+      ]
+    };
   }
 };
 </script>

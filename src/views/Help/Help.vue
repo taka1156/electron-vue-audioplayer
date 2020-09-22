@@ -2,7 +2,7 @@
   <div class="Help">
     <div class="center">
       <h4>使い方</h4>
-      <div class="border" />
+      <hr />
       <ul>
         <p>詳しい情報は、githubページをみてください</p>
         <li>Help</li>
@@ -28,13 +28,8 @@ export default {
 .center {
   margin: 0 auto;
   height: 87vh;
-  width: 100%;
+  width: 95%;
   border: solid 1px white;
-}
-
-.border {
-  width: 100%;
-  border: solid 0.4px white;
 }
 
 p {

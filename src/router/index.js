@@ -12,7 +12,7 @@ export default new Router({
     },
     {
       path: '/music',
-      name: 'audio',
+      name: 'music',
       component: require('@/views/Audio/AudioMain').default
     },
     {

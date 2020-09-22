@@ -1,0 +1,53 @@
+<template>
+  <div>
+    <ul v-show="playList.length !== 0" class="list">
+      <play-list-item
+        v-for="(song, index) in playList"
+        :key="index"
+        :song="{ index: index, ...song }"
+        @change-index="changeIndex"
+      />
+    </ul>
+  </div>
+</template>
+
+<script>
+import PlayListItem from '../molecules/PlayListItem';
+
+export default {
+  name: 'PlayList',
+  components: {
+    'play-list-item': PlayListItem
+  },
+  props: {
+    playList: {
+      type: Array,
+      default: () => [],
+      required: true
+    }
+  },
+  methods: {
+    changeIndex(index) {
+      this.$emit('change-index', index);
+    }
+  }
+};
+</script>
+
+<style scoped>
+/* css reset */
+ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* css reset */
+
+.list {
+  height: 70vh;
+  width: 95%;
+  margin: 0 auto;
+  overflow-y: scroll;
+}
+</style>

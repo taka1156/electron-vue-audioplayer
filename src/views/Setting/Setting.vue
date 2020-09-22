@@ -1,8 +1,8 @@
 <template>
   <div class="Setting">
     <div class="center">
-      <h4>設定</h4>
-      <div class="border" />
+      <h4 @click="runBrowser">設定</h4>
+      <hr />
       <!--設定の操作UI-->
       <toggle-swich :flag="isFronted" @state-change="isFronted = !isFronted">
         ウィンドウを最前面に固定
@@ -78,6 +78,10 @@ export default {
         this.msg = '';
         clearTimeout(init);
       }, 1000);
+    },
+    runBrowser() {
+      console.log('browser test');
+      window.open(location.href, null, 'top=100,left=100,width=280,height=470');
     }
   }
 };
@@ -87,13 +91,13 @@ export default {
 .center {
   margin: 0 auto;
   height: 87vh;
-  width: 100%;
+  width: 95%;
   border: solid 1px white;
 }
 
-.border {
-  width: 100%;
-  border: solid 0.4px white;
+p {
+  line-height: 8px;
+  font-size: 11.2px;
 }
 
 .setting {
