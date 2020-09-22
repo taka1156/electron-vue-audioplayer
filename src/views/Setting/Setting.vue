@@ -1,7 +1,7 @@
 <template>
   <div class="Setting">
     <div class="center">
-      <h4>設定</h4>
+      <h4 @click="runBrowser">設定</h4>
       <hr />
       <!--設定の操作UI-->
       <toggle-swich :flag="isFronted" @state-change="isFronted = !isFronted">
@@ -78,6 +78,10 @@ export default {
         this.msg = '';
         clearTimeout(init);
       }, 1000);
+    },
+    runBrowser() {
+      console.log('browser test');
+      window.open(location.href, null, 'top=100,left=100,width=280,height=470');
     }
   }
 };
