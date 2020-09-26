@@ -4,14 +4,15 @@
       <h4 @click="runBrowser">設定</h4>
       <hr />
       <!--設定の操作UI-->
-      <toggle-swich
+      <toggle-switch
+        :id="'window-fixed'"
         :flag="setting.alwaysOnTop"
         @state-change="setting.alwaysOnTop = !setting.alwaysOnTop"
       >
-        ウィンドウを最前面に固定:{{ setting.alwaysOnTop }}
-      </toggle-swich>
+        ウィンドウを最前面に固定
+      </toggle-switch>
       <color-selecter :colors="colors" :init-color="initColor" @set-color="setColor">
-        色変更:{{ initColor }}
+        色変更
       </color-selecter>
       <!--設定の反映、初期化-->
       <div class="setting">
@@ -27,8 +28,8 @@
 </template>
 
 <script>
-import ToogleSwich from './parts/ToogleSwich';
-import ColorSelecter from './parts/ColorSelecter';
+import ToggleSwitch from '@/components/atoms/ToggleSwitch';
+import ColorSelecter from '@/components/atoms/ColorSelector';
 import { updateWindowSetting } from '@/plugins/ElectronRemote.js';
 
 function colorNameToCode(colors, target) {
@@ -48,7 +49,7 @@ function colorCodeToName(colors, target) {
 export default {
   name: 'Setting',
   components: {
-    'toggle-swich': ToogleSwich,
+    'toggle-switch': ToggleSwitch,
     'color-selecter': ColorSelecter
   },
   data() {
