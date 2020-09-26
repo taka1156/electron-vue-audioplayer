@@ -2,9 +2,9 @@
   <div class="ToggleSwich">
     <div class="content">
       <!--ラベル-->
-      <p class="toggle-label" @click="stateChange">
-        <slot></slot>
-      </p>
+      <label class="toggle-label" @click="stateChange">
+        <slot />
+      </label>
       <!--トグルスイッチ-->
       <div class="switch" :class="{ switch__true: flag }" @click="stateChange">
         <div class="switch__knob" :class="{ 'switch__knob--true': flag }" />
@@ -19,7 +19,8 @@ export default {
   props: {
     flag: {
       type: Boolean,
-      default: false
+      default: false,
+      required: true
     }
   },
   methods: {
