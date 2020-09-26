@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="content">
-      <label class="selecter-label"> <slot /> </label>
-      <select v-model="selectColor" class="selecter-form" @change="setColor">
+    <div class="color-selector">
+      <label class="color-selector__label" :for="id"> <slot /> </label>
+      <select v-model="selectColor" class="color-selector__form" @change="setColor">
         <option v-for="(color, index) in colors" :key="index" :value="color.name">
           {{ color.name }}
         </option>
@@ -40,20 +40,21 @@ export default {
 </script>
 
 <style scoped>
-.content {
+.color-selector {
   display: flex;
-  margin: 5px;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 15px;
 }
 
-.selecter-label {
+.color-selector__label {
   line-height: 20px;
   margin: 3px;
   width: 70%;
   font-size: 12.2px;
 }
 
-.selecter-form {
+.color-selector__form {
+  height: 25px;
   font-size: 15px;
 }
 </style>
