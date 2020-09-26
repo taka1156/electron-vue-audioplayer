@@ -1,5 +1,10 @@
 module.exports = {
   outputDir: 'docs',
   assetsDir: './',
-  publicPath: './'
+  publicPath: './',
+  pluginOptions: {
+    electronBuilder: {
+      nodeIntegration: true
+    }
+  }
 };
