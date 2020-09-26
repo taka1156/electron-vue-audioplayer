@@ -52,6 +52,7 @@
       <!--音量調節-->
       <div class="controller__seek">
         <img src="@/assets/ui-icon/volume.svg" class="controller__seek--icon" />
+        <small class="controller__volume">{{ volume * 100 }}</small>
         <input v-model="volume" type="range" min="0" :max="1" step="0.01" />
       </div>
     </div>
@@ -139,13 +140,18 @@ input[type='range'] {
 /* オーディオプレイヤーのコントローラー */
 .controller {
   text-align: center;
-  margin: 10px auto;
+  margin: 5px auto;
+  padding: 10px;
   height: 140px;
-  border: groove 1px black;
+  border-top: 0.1px solid white;
 }
 
 .controller__seek {
   text-align: center;
+}
+
+.controller__volume {
+  font-size: 10px;
 }
 
 /* 時間表示(シークバー) */

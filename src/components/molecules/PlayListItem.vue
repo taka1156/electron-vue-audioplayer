@@ -38,7 +38,7 @@ export default {
   justify-content: center;
   cursor: pointer;
   margin: 2px;
-  border: solid 0.3px gray;
+  border: solid 0.3px white;
 }
 
 .list__text {
