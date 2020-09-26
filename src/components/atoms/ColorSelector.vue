@@ -2,7 +2,12 @@
   <div>
     <div class="color-selector">
       <label class="color-selector__label" :for="id"> <slot /> </label>
-      <select v-model="selectColor" class="color-selector__form" @change="setColor">
+      <select
+        :id="id"
+        v-model="selectColor"
+        class="color-selector__form"
+        @change="setColor"
+      >
         <option v-for="(color, index) in colors" :key="index" :value="color.name">
           {{ color.name }}
         </option>
@@ -15,6 +20,11 @@
 export default {
   name: 'ColorSelecter',
   props: {
+    id: {
+      type: String,
+      default: '',
+      required: true
+    },
     colors: {
       type: Array,
       default: () => [],

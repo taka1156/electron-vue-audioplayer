@@ -11,7 +11,12 @@
       >
         ウィンドウを最前面に固定
       </toggle-switch>
-      <color-selecter :colors="colors" :init-color="initColor" @set-color="setColor">
+      <color-selecter
+        :id="'window-color'"
+        :colors="colors"
+        :init-color="initColor"
+        @set-color="setColor"
+      >
         色変更
       </color-selecter>
       <!--設定の反映、初期化-->
@@ -64,7 +69,7 @@ export default {
         { name: 'forestgreen', value: '#228b22' },
         { name: 'cornflowerblue', value: '#6495ed' },
         { name: 'navy', value: '#000080' },
-        { name: 'gold', value: '#ff6347' },
+        { name: 'gold', value: '#ffd700' },
         { name: 'orange', value: '#ffa500' },
         { name: 'purple', value: '#9400d3' },
         { name: 'pink', value: '#ffc0cb' }
