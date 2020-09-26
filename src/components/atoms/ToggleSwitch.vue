@@ -1,13 +1,21 @@
 <template>
-  <div class="ToggleSwich">
-    <div class="content">
+  <div>
+    <div class="toggle-switch">
       <!--ラベル-->
-      <p class="toggle-label" @click="stateChange">
-        <slot></slot>
-      </p>
+      <label class="toggle-switch__label" :for="id" @click="stateChange">
+        <slot />
+      </label>
       <!--トグルスイッチ-->
-      <div class="switch" :class="{ switch__true: flag }" @click="stateChange">
-        <div class="switch__knob" :class="{ 'switch__knob--true': flag }" />
+      <div
+        class="toggle-switch__frame"
+        :class="{ 'toggle-switch__frame--true': flag }"
+        @click="stateChange"
+      >
+        <input :id="id" type="checkbox" @change="stateChange" />
+        <div
+          class="toggle-switch__knob"
+          :class="{ 'toggle-switch__knob--true': flag }"
+        />
       </div>
     </div>
   </div>
@@ -17,9 +25,15 @@
 export default {
   name: 'ToggleSwich',
   props: {
+    id: {
+      type: String,
+      default: '',
+      required: true
+    },
     flag: {
       type: Boolean,
-      default: false
+      default: false,
+      required: true
     }
   },
   methods: {
@@ -31,25 +45,25 @@ export default {
 </script>
 
 <style scoped>
-.content {
-  display: flex;
-  margin: 5px;
-  justify-content: space-around;
+input[type='checkbox'] {
+  display: none;
 }
 
-.toggle-label {
+.toggle-switch {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px;
+}
+
+.toggle-switch__label {
   line-height: 20px;
   margin: 3px;
   width: 70%;
   font-size: 12.2px;
 }
 
-.switch__none {
-  display: none;
-}
-
 /* 枠 */
-.switch {
+.toggle-switch__frame {
   position: relative;
   cursor: pointer;
   display: inline-block;
@@ -61,12 +75,12 @@ export default {
   background-color: darkgray;
 }
 
-.switch__true {
+.toggle-switch__frame--true {
   background-color: #8ce196;
 }
 
 /* ツマミ */
-.switch__knob {
+.toggle-switch__knob {
   position: absolute;
   top: 1px;
   left: 1px;
@@ -79,7 +93,7 @@ export default {
   transition: 0.2s;
 }
 
-.switch__knob--true {
+.toggle-switch__knob--true {
   left: 50%;
 }
 </style>

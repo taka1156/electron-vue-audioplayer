@@ -1,9 +1,11 @@
 'use strict';
 
-import { app, protocol, BrowserWindow } from 'electron';
+import { app, protocol, BrowserWindow, ipcMain } from 'electron';
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 const isDevelopment = process.env.NODE_ENV !== 'production';
+
+const { localStorage } = require('electron-browser-storage');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -13,8 +15,25 @@ let win;
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ]);
+async function writeLocalStorage(setting) {
+  await localStorage.setItem('AudioSetting', await JSON.stringify(setting));
+}
 
-function createWindow() {
+async function readLocalStorage() {
+  const LOCAL_DATA = await localStorage.getItem('AudioSetting');
+  // 初期値
+  let setting = { alwaysOnTop: true, backgroundColor: '#000000' };
+  // localStrageのデータがあれば初期値上書き
+  if (LOCAL_DATA) {
+    setting = JSON.parse(LOCAL_DATA);
+  } else {
+    // なければ初期値で設定を作成
+    await writeLocalStorage(setting);
+  }
+  return setting;
+}
+
+function createWindow(setting) {
   // Create the browser window.
   win = new BrowserWindow({
     width: 280,
@@ -22,7 +41,8 @@ function createWindow() {
     x: 1200,
     y: 0,
     resizable: true,
-    alwaysOnTop: false,
+    alwaysOnTop: setting.alwaysOnTop,
+    backgroundColor: setting.backgroundColor,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
@@ -45,6 +65,14 @@ function createWindow() {
   });
 }
 
+// update-setting(rendererプロセスから呼び出す)
+ipcMain.handle('update-setting', async (event, setting) => {
+  await writeLocalStorage(setting);
+  win.setBackgroundColor(setting.backgroundColor);
+  win.setAlwaysOnTop(setting.alwaysOnTop);
+  win.reload();
+});
+
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
   // On macOS it is common for applications and their menu bar
@@ -54,11 +82,12 @@ app.on('window-all-closed', () => {
   }
 });
 
-app.on('activate', () => {
+app.on('activate', async () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (win === null) {
-    createWindow();
+    const SETTING = await readLocalStorage();
+    createWindow(SETTING);
   }
 });
 
@@ -74,7 +103,8 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString());
     }
   }
-  createWindow();
+  const SETTING = await readLocalStorage();
+  createWindow(SETTING);
 });
 
 // Exit cleanly on request from parent process in development mode.

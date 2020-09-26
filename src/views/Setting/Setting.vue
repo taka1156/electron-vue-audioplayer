@@ -4,18 +4,21 @@
       <h4 @click="runBrowser">設定</h4>
       <hr />
       <!--設定の操作UI-->
-      <toggle-swich :flag="isFronted" @state-change="isFronted = !isFronted">
+      <toggle-switch
+        :id="'window-fixed'"
+        :flag="setting.alwaysOnTop"
+        @state-change="setting.alwaysOnTop = !setting.alwaysOnTop"
+      >
         ウィンドウを最前面に固定
-      </toggle-swich>
-      <toggle-swich :flag="isDisable" @state-change="isDisable = !isDisable">
-        コントローラーのみ表示
-      </toggle-swich>
-      <toggle-swich :flag="isAutoPlay" @state-change="isAutoPlay = !isAutoPlay">
-        オートプレイ
-      </toggle-swich>
-      <toggle-swich :flag="isFile" @state-change="isFile = !isFile">
-        ファイルの保存
-      </toggle-swich>
+      </toggle-switch>
+      <color-selecter
+        :id="'window-color'"
+        :colors="colors"
+        :init-color="initColor"
+        @set-color="setColor"
+      >
+        色変更
+      </color-selecter>
       <!--設定の反映、初期化-->
       <div class="setting">
         <button @click="saveSetting('保存しました。')">保存</button>
@@ -30,46 +33,76 @@
 </template>
 
 <script>
-import ToogleSwich from './parts/ToogleSwich';
+import ToggleSwitch from '@/components/atoms/ToggleSwitch';
+import ColorSelecter from '@/components/atoms/ColorSelector';
+import { updateWindowSetting } from '@/plugins/ElectronRemote.js';
+
+function colorNameToCode(colors, target) {
+  if (target == null) {
+    return 'black';
+  } else {
+    const initColor = colors.find(color => color.value === target);
+    return initColor.name;
+  }
+}
+
+function colorCodeToName(colors, target) {
+  const colorCode = colors.find(color => color.name === target);
+  return colorCode.value;
+}
 
 export default {
   name: 'Setting',
   components: {
-    'toggle-swich': ToogleSwich
+    'toggle-switch': ToggleSwitch,
+    'color-selecter': ColorSelecter
   },
   data() {
     return {
-      isFronted: false,
-      isDisable: false,
-      isAutoPlay: false,
-      isFile: false,
+      setting: {
+        alwaysOnTop: false,
+        backgroundColor: '#000000'
+      },
+      colors: [
+        { name: 'black', value: '#000000' },
+        { name: 'tomato', value: '#ff6347' },
+        { name: 'forestgreen', value: '#228b22' },
+        { name: 'cornflowerblue', value: '#6495ed' },
+        { name: 'navy', value: '#000080' },
+        { name: 'gold', value: '#ffd700' },
+        { name: 'orange', value: '#ffa500' },
+        { name: 'purple', value: '#9400d3' },
+        { name: 'pink', value: '#ffc0cb' }
+      ],
       msg: ''
     };
+  },
+  computed: {
+    initColor() {
+      return colorNameToCode(this.colors, this.setting.backgroundColor);
+    }
   },
   created() {
     const LOCAL_DATA = localStorage.getItem('AudioSetting');
     if (LOCAL_DATA) {
       const SETTING = JSON.parse(LOCAL_DATA);
       // 初期値を代入
-      this.isFronted = SETTING.isFronted;
-      this.isDisable = SETTING.isDisable;
-      this.isAutoPlay = SETTING.isAutoPlay;
-      this.isFile = SETTING.isFile;
+      this.setting.alwaysOnTop = SETTING.alwaysOnTop;
+      this.setting.backgroundColor = SETTING.backgroundColor;
     }
   },
   methods: {
+    setColor(color) {
+      this.setting.backgroundColor = colorCodeToName(this.colors, color);
+    },
     saveSetting(msg) {
-      const SETTING = {
-        isFronted: this.isFronted,
-        isDisable: this.isDisable,
-        isAutoPlay: this.isAutoPlay,
-        isFile: this.isFile
-      };
-      localStorage.setItem('AudioSetting', JSON.stringify(SETTING));
+      localStorage.setItem('AudioSetting', JSON.stringify(this.setting));
+      updateWindowSetting(this.setting);
       this.setMsg(msg);
     },
     resetSetting() {
-      this.isFronted = this.isDisable = this.isAutoPlay = this.isFile = false;
+      this.setting.alwaysOnTop = false;
+      this.setting.backgroundColor = '#000000';
       this.saveSetting('初期化しました。');
     },
     setMsg(msg) {

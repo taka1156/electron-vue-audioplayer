@@ -33,7 +33,7 @@ export default {
 }
 
 .title__text {
-  margin: 5px auto;
+  margin: 0 auto 0;
   white-space: nowrap;
   font-size: 15px;
 }
