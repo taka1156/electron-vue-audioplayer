@@ -1,16 +1,14 @@
 <template>
   <div class="AudoDisplay">
     <!--情報の表示-->
-    <div class="info">
-      <div class="info__music">
-        <p class="info__music--text">
-          track[{{ trackInfo.now + 1 }}/{{ trackInfo.max }}]
-        </p>
-        <div v-if="isLoaded">
-          <audio-title :audio-title="playedSong.title" />
-          <p>{{ playedSong.artist }}</p>
-          <img :src="playedSong.picture" class="info__music--artwork" />
-        </div>
+    <div class="audio-display">
+      <p class="audio-display__track">
+        track[{{ trackInfo.now + 1 }}/{{ trackInfo.max }}]
+      </p>
+      <div v-if="isLoaded">
+        <audio-title :audio-title="playedSong.title" />
+        <p class="audio-display__artist">{{ playedSong.artist }}</p>
+        <img :src="playedSong.picture" class="audio-display__artwork" />
       </div>
     </div>
   </div>
@@ -40,25 +38,25 @@ export default {
 
 <style scoped>
 /* 再生中の曲に関する情報 */
-.info {
+.audio-display {
   height: 200px;
   width: 90%;
-  margin: 5px auto;
+  margin: 0 auto;
   text-align: center;
 }
 
-.info__music {
-  margin: 15px auto;
-  line-height: 8px;
+.audio-display__track {
+  margin: 10px auto;
+  font-size: 10px;
 }
 
-.info__music--artwork {
+.audio-display__artist {
+  margin: 10px auto;
+  font-size: 15px;
+}
+
+.audio-display__artwork {
   height: 50%;
   width: 50%;
-}
-
-.info__music--icon {
-  height: 15px;
-  width: 15px;
 }
 </style>

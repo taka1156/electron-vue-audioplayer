@@ -69,7 +69,7 @@ export default {
   margin: 0 auto;
   height: 87vh;
   width: 95%;
-  border: solid 1px white;
+  border: 1px solid white;
 }
 
 /* ファイルの取り込み */
