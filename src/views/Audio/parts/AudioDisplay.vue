@@ -52,7 +52,7 @@ export default {
 
 .audio-display__artist {
   margin: 10px auto;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .audio-display__artwork {
