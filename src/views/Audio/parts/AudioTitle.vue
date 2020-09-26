@@ -1,7 +1,10 @@
 <template>
-  <div class="AudioTitle">
-    <div class="title__box">
-      <p class="title__text" :class="{ 'title__box--anime': audioTitle.length > 8 }">
+  <div>
+    <div class="audio-title">
+      <p
+        class="audio-title__text"
+        :class="{ 'audio-title__text--anime': audioTitle.length > 8 }"
+      >
         {{ audioTitle }}
       </p>
     </div>
@@ -22,20 +25,19 @@ export default {
 </script>
 
 <style scoped>
-.title__box {
+.audio-title__box {
   margin: auto;
   width: 55%;
   overflow: hidden;
 }
-
-.title__box--anime {
-  animation: flow-text 8s 0s linear infinite normal;
-}
-
-.title__text {
-  margin: 5px auto;
+.taudio-title__text {
+  margin: 0;
   white-space: nowrap;
   font-size: 15px;
+}
+
+.audio-title__text--anime {
+  animation: flow-text 8s 0s linear infinite normal;
 }
 
 @keyframes flow-text {
