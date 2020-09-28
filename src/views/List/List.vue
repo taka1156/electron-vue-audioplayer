@@ -3,7 +3,11 @@
     <div class="center">
       <h4>取り込んだ曲</h4>
       <hr />
-      <play-list :play-list="playList" @change-index="changeIndex" />
+      <play-list
+        :play-index="index"
+        :play-list="playList"
+        @change-index="changeIndex"
+      />
     </div>
   </div>
 </template>
@@ -18,6 +22,9 @@ export default {
     'play-list': PlayList
   },
   computed: {
+    index() {
+      return this.$store.getters['audioPlayer/trackInfo'].now;
+    },
     playList() {
       return this.$store.getters['audioPlayer/playList'];
     }
