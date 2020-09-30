@@ -37,10 +37,10 @@ function createWindow(setting) {
   // Create the browser window.
   win = new BrowserWindow({
     width: 280,
-    height: 500,
+    height: 480,
     x: 100,
     y: 100,
-    resizable: false,
+    resizable: true,
     alwaysOnTop: setting.alwaysOnTop,
     backgroundColor: setting.backgroundColor,
     webPreferences: {

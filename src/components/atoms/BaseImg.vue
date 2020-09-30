@@ -18,4 +18,9 @@
   width: 20%;
   margin: 5px;
 }
+
+.img--artwork {
+  height: 110px;
+  width: 110px;
+}
 </style>
