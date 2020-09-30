@@ -55,4 +55,20 @@ ul {
   margin: 0 auto;
   overflow-y: scroll;
 }
+
+/* スクロールバーのcss */
+
+.list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.list::-webkit-scrollbar-track {
+  display: none;
+}
+
+.list::-webkit-scrollbar-thumb {
+  width: 100%;
+  background-color: gray;
+  border-radius: 5px;
+}
 </style>

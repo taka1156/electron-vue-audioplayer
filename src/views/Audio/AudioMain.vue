@@ -6,33 +6,27 @@
         こちらをクリックまたは、ファイルドラッグで音楽ファイルを入れてください。
         <input type="file" class="fileinput__none" multiple @change="fileChange" />
       </label>
-      <div v-if="!isLoaded" class="load">
-        <p v-show="playListLen !== 0" class="load__text">
-          {{ playListLen + 1 }}曲目を読み込み中...
-        </p>
-        <div class="load__spinner"></div>
+      <div v-if="isLoaded">
+        <audio-player />
       </div>
       <div v-else>
-        <!--再生中の曲の情報-->
-        <audio-display />
-        <audio-controller />
+        <audio-loading :playlist-len="playListLen" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import AudioDisplay from './parts/AudioDisplay';
-import AudioController from './parts/AudioController';
+import AudioPlayer from '@/components/organisms/AudioPlayer';
+import AudioLoading from '@/components/organisms/AudioLoading';
 import audioPlayer from '@/plugins/AudioPlayer.js';
-
 let isFirstTime = true;
 
 export default {
   name: 'AudioMain',
   components: {
-    'audio-display': AudioDisplay,
-    'audio-controller': AudioController
+    'audio-player': AudioPlayer,
+    'audio-loading': AudioLoading
   },
   computed: {
     isLoaded() {
@@ -84,36 +78,5 @@ export default {
 
 .fileinput__none {
   display: none;
-}
-
-.load {
-  margin: 35vh auto;
-}
-
-.load__text {
-  font-size: 15px;
-  text-align: center;
-}
-
-/* 待機時のスピナー表示 */
-
-.load__spinner {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
-  border-radius: 100%;
-  background-color: white;
-  animation: spinner-anime 2s infinite;
-}
-
-@keyframes spinner-anime {
-  from {
-    transform: scale(0);
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 0;
-  }
 }
 </style>
