@@ -4,7 +4,7 @@
       <play-list-item
         v-for="(song, index) in playList"
         :key="index"
-        :song="{ index: index, ...song }"
+        :song="{ index: index, isPlay: index === playIndex, ...song }"
         @change-index="changeIndex"
       />
     </ul>
@@ -20,6 +20,11 @@ export default {
     'play-list-item': PlayListItem
   },
   props: {
+    playIndex: {
+      type: Number,
+      default: 0,
+      required: true
+    },
     playList: {
       type: Array,
       default: () => [],
