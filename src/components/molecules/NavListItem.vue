@@ -33,7 +33,7 @@ export default {
 .nav-item {
   display: block;
   margin: 5px;
-  width: 60px;
+  width: 55px;
   border: solid 0.05px white;
 }
 

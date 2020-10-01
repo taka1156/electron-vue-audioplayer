@@ -1,26 +1,37 @@
 <template>
   <div>
-    <li class="list__item" @click="$emit('change-index', song.index)">
+    <li
+      class="play-list-item"
+      :class="{ 'play-list-item--play': song.isPlay }"
+      @click="$emit('change-index', song.index)"
+    >
       <base-img
         :img-url="song.picture"
         :img-alt="`${song.title}のアートワーク`"
         class="img--playlist"
       />
-      <p class="list__text">
-        {{ song.title }}
-        <small>artist: {{ song.artist }}</small>
-      </p>
+      <div class="play-list-item__text">
+        <playing-icon v-if="song.isPlay" />
+        <base-wrap-text :wrap-text="song.title" />
+        <base-text :text="song.artist" />
+      </div>
     </li>
   </div>
 </template>
 
 <script>
 import BaseImg from '../atoms/BaseImg';
+import BaseText from '../atoms/Text/BaseText';
+import BaseWrapText from '../atoms/Text/BaseWrapText';
+import PlayingIcon from '../atoms/PlayingIcon';
 
 export default {
   name: 'PlayListItem',
   components: {
-    'base-img': BaseImg
+    'base-img': BaseImg,
+    'base-text': BaseText,
+    'base-wrap-text': BaseWrapText,
+    'playing-icon': PlayingIcon
   },
   props: {
     song: {
@@ -33,7 +44,7 @@ export default {
 </script>
 
 <style scoped>
-.list__item {
+.play-list-item {
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -41,11 +52,16 @@ export default {
   border: solid 0.3px white;
 }
 
-.list__text {
+.play-list-item--play {
+  border: 1px solid #28a745;
+}
+
+.play-list-item__text {
   display: flex;
-  text-align: center;
-  width: 80%;
   flex-direction: column;
-  margin: 5% auto;
+  margin: 0 auto;
+  padding: 10px;
+  width: 80%;
+  border-left: 1px solid white;
 }
 </style>
