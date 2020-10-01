@@ -20,7 +20,7 @@
 }
 
 .img--artwork {
-  height: 110px;
-  width: 110px;
+  height: 140px;
+  width: 140px;
 }
 </style>

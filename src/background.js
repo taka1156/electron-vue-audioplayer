@@ -43,6 +43,8 @@ function createWindow(setting) {
     resizable: true,
     alwaysOnTop: setting.alwaysOnTop,
     backgroundColor: setting.backgroundColor,
+    autoHideMenuBar: true,
+    useContentSize: true,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
