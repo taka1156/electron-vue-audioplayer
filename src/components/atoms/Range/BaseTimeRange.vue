@@ -7,8 +7,8 @@
       </div>
       <div class="ctrl__time-range">
         <input
-          v-model="preTime"
           type="range"
+          :value="preTime"
           min="0"
           :max="seekInfo.end"
           step="1"
@@ -32,19 +32,25 @@ export default {
   },
   data() {
     return {
-      preTime: 0
+      preTime: 0,
+      isCtrl: false
     };
   },
   watch: {
     seekInfo() {
-      if (this.preTime !== this.seekInfo.now) {
+      if (!this.isCtrl) {
         this.preTime = this.seekInfo.now;
       }
     }
   },
   methods: {
-    updateTime() {
-      this.$emit('update-time', this.preTime);
+    updateTime(e) {
+      this.preTime = e.target.value;
+      if (this.preTime !== this.seekInfo.now) {
+        this.isCtrl = true;
+        this.$emit('update-time', this.preTime);
+        this.isCtrl = false;
+      }
     },
     format(seconds) {
       const minute = seconds !== 0 ? Math.floor(seconds / 60) : 0;

@@ -43,7 +43,8 @@ export default {
     }
   },
   methods: {
-    updateVolume() {
+    updateVolume(e) {
+      this.preVolume = e.target.value;
       this.$emit('update-volume', this.preVolume);
     }
   }

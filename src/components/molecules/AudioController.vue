@@ -44,7 +44,7 @@
         <base-button
           class="base-button--lg"
           :img-url="require('@/assets/ui-icon/stop.svg')"
-          @click="stop"
+          @click="pause"
         />
       </span>
       <!--トラックを進める-->
@@ -111,8 +111,8 @@ export default {
     play() {
       this.$emit('play');
     },
-    stop() {
-      this.$emit('stop');
+    pause() {
+      this.$emit('pause');
     },
     loop() {
       this.$emit('loop');

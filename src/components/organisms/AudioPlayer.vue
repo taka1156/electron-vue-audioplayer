@@ -11,7 +11,7 @@
       @next="next"
       @prev="prev"
       @play="play"
-      @stop="stop"
+      @pause="pause"
       @loop="loop"
     />
   </div>
@@ -21,7 +21,7 @@
 /* eslint-disable vue/no-side-effects-in-computed-properties */
 import AudioDisplay from '@/components/molecules/AudioDisplay';
 import AudioController from '@/components/molecules/AudioController';
-import audioPlayer from '@/plugins/AudioPlayer.js';
+import audioPlayer from '@/plugins/howlerAudioPlayer.js';
 
 export default {
   name: 'AudioPlayer',
@@ -57,10 +57,10 @@ export default {
   },
   methods: {
     updateTime(time) {
-      audioPlayer.ctrlSeek(time);
+      audioPlayer.updateTime(time);
     },
     updateVolume(vol) {
-      audioPlayer.ctrlVolume(vol);
+      audioPlayer.updateVolume(vol);
     },
     next() {
       audioPlayer.next();
@@ -71,8 +71,8 @@ export default {
     play() {
       audioPlayer.play();
     },
-    stop() {
-      audioPlayer.stop();
+    pause() {
+      audioPlayer.pause();
     },
     loop() {
       audioPlayer.loop();
