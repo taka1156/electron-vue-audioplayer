@@ -8,7 +8,9 @@ const state = {
   index: 0, // プレイリストの添字
   preSeekTime: 0, // 現在のシークバーの現在位置(再生位置)
   seekEndTime: 0, // シークバーの最大値
-  preVolume: 1
+  preVolume: 1,
+  canvas: null,
+  isCanvas: true
 };
 
 const getters = {
@@ -44,6 +46,13 @@ const getters = {
       now: state.index, // 現在のトラック
       max: state.playList.length // 最大のトラック
     };
+  },
+  canvas(state) {
+    return state.canvas;
+  },
+  isCanvas(state) {
+    console.log(state.isCanvas);
+    return state.isCanvas;
   }
 };
 
@@ -88,6 +97,12 @@ const mutations = {
   // ボリューム
   setPreVolume(state, vol) {
     state.preVolume = vol;
+  },
+  setCanvas(state, audioSpectrum) {
+    state.canvas = audioSpectrum;
+  },
+  stateChangeIsCanvas(state, status) {
+    state.isCanvas = status;
   }
 };
 

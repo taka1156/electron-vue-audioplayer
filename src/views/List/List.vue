@@ -14,7 +14,7 @@
 
 <script>
 import PlayList from '@/components/organisms/PlayList';
-import audioPlayer from '@/plugins/AudioPlayer.js';
+import audioPlayer from '@/plugins/howlerAudioPlayer.js';
 
 export default {
   name: 'List',

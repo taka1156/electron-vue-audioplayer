@@ -6,6 +6,13 @@ function replaceFileNameToTitle(name) {
   return name.replace(/(.mp3|.m4a|.wav)/i, '');
 }
 
+function replaceFileNameToFormat(name) {
+  return name
+    .split('.')
+    .pop()
+    .toLowerCase();
+}
+
 // 音楽ファイルに含まれるID3の情報を整形
 async function shapedID3(file) {
   try {
@@ -53,7 +60,10 @@ async function loadMusicFile(file) {
     title: title,
     artist: artist,
     picture: picture,
-    music: music
+    music: {
+      data: music,
+      format: replaceFileNameToFormat(file.name)
+    }
   };
 }
 

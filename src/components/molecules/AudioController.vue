@@ -2,6 +2,20 @@
   <div class="AudioController">
     <div class="ctrl">
       <!--ループやシャッフルの制御-->
+      <span v-show="!isVisual">
+        <base-button
+          class="base-button--sm"
+          :img-url="require('@/assets/ui-icon/visualizer.svg')"
+          @click="visual"
+        />
+      </span>
+      <span v-show="isVisual">
+        <base-button
+          class="base-button--sm"
+          :img-url="require('@/assets/ui-icon/visualizer-true.svg')"
+          @click="visual"
+        />
+      </span>
       <span v-show="!isLoop">
         <base-button
           class="base-button--sm"
@@ -44,7 +58,7 @@
         <base-button
           class="base-button--lg"
           :img-url="require('@/assets/ui-icon/stop.svg')"
-          @click="stop"
+          @click="pause"
         />
       </span>
       <!--トラックを進める-->
@@ -84,6 +98,11 @@ export default {
       default: false,
       required: true
     },
+    isVisual: {
+      type: Boolean,
+      default: false,
+      required: true
+    },
     seekInfo: {
       type: Object,
       default: () => {},
@@ -111,8 +130,11 @@ export default {
     play() {
       this.$emit('play');
     },
-    stop() {
-      this.$emit('stop');
+    pause() {
+      this.$emit('pause');
+    },
+    visual() {
+      this.$emit('visual');
     },
     loop() {
       this.$emit('loop');
@@ -127,7 +149,7 @@ export default {
 
 .ctrl {
   text-align: center;
-  margin: 25px auto;
+  margin: 40px auto;
   padding: 0;
   height: 150px;
   width: 95%;
