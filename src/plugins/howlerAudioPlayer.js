@@ -23,7 +23,7 @@ export default {
     });
 
     // リセット
-    store.commit('audioPlayer/stateChangeIsCanvas');
+    store.commit('audioPlayer/stateChangeIsCanvas', false);
     store.commit('audioPlayer/setCanvas', null);
     // ビジュアライザーの値を渡す
     store.commit('audioPlayer/setCanvas', audioPlayer);
@@ -44,7 +44,7 @@ export default {
     audioPlayer.volume(vol);
   },
   play() {
-    store.commit('audioPlayer/stateChangeIsCanvas');
+    store.commit('audioPlayer/stateChangeIsCanvas', true);
     store.commit('audioPlayer/stateChangePlay');
     audioPlayer.play();
     // 現在の再生位置を取得
@@ -90,7 +90,10 @@ export default {
     audioPlayer.loop(true);
   },
   visual() {
-    this.pause();
-    this.play();
+    store.commit('audioPlayer/stateChangeIsCanvas', false);
+    if (store.getters['audioPlayer/isPlay']) {
+      this.pause();
+      this.play();
+    }
   }
 };

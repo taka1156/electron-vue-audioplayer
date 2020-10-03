@@ -51,6 +51,7 @@ const getters = {
     return state.canvas;
   },
   isCanvas(state) {
+    console.log(state.isCanvas);
     return state.isCanvas;
   }
 };
@@ -100,8 +101,8 @@ const mutations = {
   setCanvas(state, audioSpectrum) {
     state.canvas = audioSpectrum;
   },
-  stateChangeIsCanvas(state) {
-    state.isCanvas = !state.isCanvas;
+  stateChangeIsCanvas(state, status) {
+    state.isCanvas = status;
   }
 };
 
