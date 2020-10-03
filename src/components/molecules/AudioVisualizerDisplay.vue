@@ -69,8 +69,7 @@ export default {
         // PonAudioSpectrum.VisualizerType.Block,
         PonAudioSpectrum.VisualizerType.Solid,
         {
-          colors: ['#8a99ff', '#87ff9f', '#f8ff96', '#ff5b4f'],
-          colorSteps: [5, 10, 15, 20]
+          colors: ['#8a99ff', '#87ff9f', '#f8ff96', '#ff5b4f']
         }
       );
       this.audioSpectram.setAudio(this.canvasPas);
@@ -106,9 +105,9 @@ export default {
 
 #target {
   margin: 0 auto;
-  height: 140px;
-  width: 140px;
-  border: 1px solid white;
+  height: 180px;
+  width: 180px;
+  border: 0.5px solid white;
 }
 
 /* #target {
