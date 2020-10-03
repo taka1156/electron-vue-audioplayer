@@ -36,8 +36,8 @@ async function readLocalStorage() {
 function createWindow(setting) {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 280,
-    height: 480,
+    width: 310,
+    height: 520,
     x: 100,
     y: 100,
     resizable: true,

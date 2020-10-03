@@ -19,7 +19,7 @@
 <script>
 import AudioPlayer from '@/components/organisms/AudioPlayer';
 import AudioLoading from '@/components/organisms/AudioLoading';
-import audioPlayer from '@/plugins/AudioPlayer.js';
+import audioPlayer from '@/plugins/howlerAudioPlayer.js';
 let isFirstTime = true;
 
 export default {
