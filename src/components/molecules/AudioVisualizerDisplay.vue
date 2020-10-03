@@ -83,6 +83,7 @@ export default {
         clearInterval(this.drawTimer);
         this.$refs.canvasWrapper.removeChild(this.audioSpectram.canvas);
         this.audioSpectram.destroy();
+        this.audioSpectram = null;
       }
     }
   }

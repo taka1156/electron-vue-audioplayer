@@ -51,7 +51,6 @@ const getters = {
     return state.canvas;
   },
   isCanvas(state) {
-    console.log(state.isCanvas);
     return state.isCanvas;
   }
 };

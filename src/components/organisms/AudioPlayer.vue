@@ -2,6 +2,7 @@
   <div>
     <div v-if="isVisual">
       <audio-Visualizer-Display
+        ref="visualizer"
         :track-info="trackInfo"
         :played-song="playedSong"
         :canvas-pas="canvasPas"
@@ -77,6 +78,11 @@ export default {
     this.volume = parseFloat(this.$store.getters['audioPlayer/preVolume']);
   },
   methods: {
+    initVisualizer() {
+      if (this.isVisual) {
+        this.$refs.visualizer.destoroyCanvas();
+      }
+    },
     updateTime(time) {
       audioPlayer.updateTime(time);
     },
@@ -84,9 +90,11 @@ export default {
       audioPlayer.updateVolume(vol);
     },
     next() {
+      this.initVisualizer();
       audioPlayer.next();
     },
     prev() {
+      this.initVisualizer();
       audioPlayer.prev();
     },
     play() {
