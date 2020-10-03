@@ -21,6 +21,12 @@ export default {
       loop: false,
       volume: 1
     });
+
+    // リセット
+    store.commit('audioPlayer/stateChangeIsCanvas');
+    store.commit('audioPlayer/setCanvas', null);
+    // ビジュアライザーの値を渡す
+    store.commit('audioPlayer/setCanvas', audioPlayer);
     // 終わりの時間をvuexに渡す
     audioPlayer.load();
     audioPlayer.on('load', () => {
@@ -38,9 +44,7 @@ export default {
     audioPlayer.volume(vol);
   },
   play() {
-    if (audioPlayer == null) {
-      this.init();
-    }
+    store.commit('audioPlayer/stateChangeIsCanvas');
     store.commit('audioPlayer/stateChangePlay');
     audioPlayer.play();
     // 現在の再生位置を取得
@@ -84,5 +88,9 @@ export default {
   loop() {
     store.commit('audioPlayer/stateChangeLoop');
     audioPlayer.loop(true);
+  },
+  visual() {
+    this.pause();
+    this.play();
   }
 };
