@@ -236,13 +236,13 @@
         (e.remnantCurrentPoints = []),
         (e.remnantTicks = []),
         e.applyOptions(t, {
-          blockWidth: 15,
-          blockHeight: 8,
-          blockCount: 40,
+          blockWidth: 1,
+          blockHeight: 1,
+          blockCount: 20,
           marginh: 2,
           marginv: 2,
           colors: ['#1d2088', '#0068b7', '#00a0e9', '#8edcff'],
-          colorSteps: [10, 20, 30, 40]
+          colorSteps: [5, 10, 15, 20]
         }),
         (e.canvas.height = (e.blockHeight + e.marginv) * e.blockCount - e.marginv);
       for (var n = 0, r = 0; r < e.blockCount; r++)

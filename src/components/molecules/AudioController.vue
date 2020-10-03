@@ -149,7 +149,7 @@ export default {
 
 .ctrl {
   text-align: center;
-  margin: 25px auto;
+  margin: 40px auto;
   padding: 0;
   height: 150px;
   width: 95%;

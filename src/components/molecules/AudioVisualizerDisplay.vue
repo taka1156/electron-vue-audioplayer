@@ -66,9 +66,12 @@ export default {
     updateCanvas() {
       this.destoroyCanvas();
       this.audioSpectram = new PonAudioSpectrum(
-        //PonAudioSpectrum.VisualizerType.Block,
+        // PonAudioSpectrum.VisualizerType.Block,
         PonAudioSpectrum.VisualizerType.Solid,
-        {}
+        {
+          colors: ['#8a99ff', '#87ff9f', '#f8ff96', '#ff5b4f'],
+          colorSteps: [5, 10, 15, 20]
+        }
       );
       this.audioSpectram.setAudio(this.canvasPas);
       this.$refs.canvasWrapper.appendChild(this.audioSpectram.canvas);
