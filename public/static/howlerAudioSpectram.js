@@ -166,8 +166,8 @@
       if (
         ((r.type = o.Solid),
         r.applyOptions(t, {
-          barWidth: 5,
-          barHeight: 140,
+          barWidth: 3,
+          barHeight: 180,
           colors: ['#1d2088', '#0068b7', '#00a0e9', '#8edcff'],
           margin: 1,
           gradientStops: null
@@ -379,7 +379,7 @@
         w);
     function w(t, e) {
       (this.analyser = null),
-        (this.fftSize = 64),
+        (this.fftSize = 128),
         (this.visualizer = null),
         (this.visualizerType = t),
         (this.visualizer = b.create(t, e)),

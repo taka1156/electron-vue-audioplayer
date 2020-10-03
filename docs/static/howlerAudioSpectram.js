@@ -168,9 +168,10 @@
         r.applyOptions(t, {
           barWidth: 5,
           barHeight: 140,
-          colors: ['#1d2088', '#8edcff'],
+          colors: ['#1d2088', '#0068b7', '#00a0e9', '#8edcff'],
           margin: 1,
-          gradientStops: null
+          gradientStops: null,
+          colorSteps: [5, 10, 15, 20]
         }),
         (r.canvas.height = r.barHeight),
         (r.canvas.width = r.barWidth),
@@ -236,13 +237,13 @@
         (e.remnantCurrentPoints = []),
         (e.remnantTicks = []),
         e.applyOptions(t, {
-          blockWidth: 1,
-          blockHeight: 1,
+          blockWidth: 8,
+          blockHeight: 5,
           blockCount: 20,
-          marginh: 2,
-          marginv: 2,
+          marginh: 3,
+          marginv: 3,
           colors: ['#1d2088', '#0068b7', '#00a0e9', '#8edcff'],
-          colorSteps: [5, 10, 15, 20]
+          colorSteps: [5, 10, 15, 30]
         }),
         (e.canvas.height = (e.blockHeight + e.marginv) * e.blockCount - e.marginv);
       for (var n = 0, r = 0; r < e.blockCount; r++)
