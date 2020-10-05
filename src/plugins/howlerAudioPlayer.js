@@ -61,7 +61,7 @@ export default {
   // 時間の更新(シークバーからの操作)
   updateTime(time) {
     store.commit('audioPlayer/setPreSeekTime', time);
-    audioPlayer.updateTime(time);
+    audioPlayer.seek(time);
   },
   // 音量の更新(シークバーからの操作)
   updateVolume(vol) {
