@@ -32,24 +32,19 @@ export default {
   },
   data() {
     return {
-      preTime: 0,
-      isCtrl: false
+      preTime: 0
     };
   },
   watch: {
     seekInfo() {
-      if (!this.isCtrl) {
-        this.preTime = this.seekInfo.now;
-      }
+      this.preTime = this.seekInfo.now;
     }
   },
   methods: {
     updateTime(e) {
       this.preTime = e.target.value;
       if (this.preTime !== this.seekInfo.now) {
-        this.isCtrl = true;
         this.$emit('update-time', this.preTime);
-        this.isCtrl = false;
       }
     },
     format(seconds) {
