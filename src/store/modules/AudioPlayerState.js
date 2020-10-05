@@ -36,8 +36,8 @@ const getters = {
   // 再生時間の情報
   seekInfo(state) {
     return {
-      now: Math.floor(state.preSeekTime), // 現在の再生時間
-      end: Math.floor(state.seekEndTime) // 終わりの再生時間
+      now: state.preSeekTime, // 現在の再生時間
+      end: state.seekEndTime // 終わりの再生時間
     };
   },
   // トラックの情報
