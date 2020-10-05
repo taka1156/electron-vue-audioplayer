@@ -114,7 +114,7 @@ class HowlAudio {
    * @param {Number} time - 進める時間の大きさを指定(s)
    */
 
-  updateTime(time) {
+  seek(time) {
     this.howl.seek(time);
   }
 
@@ -123,7 +123,7 @@ class HowlAudio {
    * @param {Number} vol - 音量の大きさを指定(0~1)
    */
 
-  updateVolume(vol) {
+  volume(vol) {
     this.howl.volume(vol);
   }
 
