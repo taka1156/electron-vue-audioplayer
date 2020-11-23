@@ -1,5 +1,5 @@
 <template>
-  <div class="List">
+  <div>
     <div class="center">
       <h4>取り込んだ曲</h4>
       <hr />

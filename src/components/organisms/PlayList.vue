@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul v-show="playList.length !== 0" class="list">
+    <ul v-show="playList.length !== 0" class="play-list">
       <play-list-item
         v-for="(song, index) in playList"
         :key="index"
@@ -49,7 +49,7 @@ ul {
 
 /* css reset */
 
-.list {
+.play-list {
   height: 70vh;
   width: 95%;
   margin: 0 auto;

@@ -1,7 +1,7 @@
 <template>
-  <div class="Setting">
+  <div>
     <div class="center">
-      <h4 @click="runBrowser">設定</h4>
+      <h4>設定</h4>
       <hr />
       <!--設定の操作UI-->
       <toggle-switch
@@ -111,10 +111,6 @@ export default {
         this.msg = '';
         clearTimeout(init);
       }, 1000);
-    },
-    runBrowser() {
-      console.log('browser test');
-      window.open(location.href, null, 'top=100,left=100,width=280,height=470');
     }
   }
 };
