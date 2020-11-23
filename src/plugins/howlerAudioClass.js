@@ -130,7 +130,7 @@ class HowlAudio {
   // ループ設定を変える
   loop() {
     const isloop = !this.howl.loop();
-    this.howl.loop(this.howl.loop(isloop));
+    this.howl.loop(isloop);
   }
 }
 

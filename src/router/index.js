@@ -13,7 +13,7 @@ export default new Router({
     {
       path: '/music',
       name: 'music',
-      component: require('@/views/Audio/AudioMain').default
+      component: require('@/views/Audio/AudioPlayer').default
     },
     {
       path: '/list',

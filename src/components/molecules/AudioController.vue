@@ -1,5 +1,5 @@
 <template>
-  <div class="AudioController">
+  <div>
     <div class="ctrl">
       <!--ループやシャッフルの制御-->
       <span v-show="!isVisual">

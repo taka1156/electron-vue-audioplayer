@@ -1,5 +1,5 @@
 <template>
-  <div class="AudoDisplay">
+  <div>
     <!--情報の表示-->
     <div class="audio-display">
       <base-text

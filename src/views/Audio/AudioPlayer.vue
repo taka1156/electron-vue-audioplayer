@@ -1,5 +1,5 @@
 <template>
-  <div class="AudioMain">
+  <div>
     <div class="audio" @drop.prevent="fileChange">
       <!--ファイルの登録-->
       <label class="fileinput">
@@ -10,7 +10,7 @@
         <audio-player />
       </div>
       <div v-else>
-        <audio-loading :playlist-len="playListLen" />
+        <audio-load :playlist-len="playListLen" />
       </div>
     </div>
   </div>
@@ -18,15 +18,15 @@
 
 <script>
 import AudioPlayer from '@/components/organisms/AudioPlayer';
-import AudioLoading from '@/components/organisms/AudioLoading';
+import AudioLoad from '@/components/organisms/AudioLoad';
 import audioPlayer from '@/plugins/howlerAudioPlayer.js';
 let isFirstTime = true;
 
 export default {
-  name: 'AudioMain',
+  name: 'AudioPlayer',
   components: {
     'audio-player': AudioPlayer,
-    'audio-loading': AudioLoading
+    'audio-load': AudioLoad
   },
   computed: {
     isLoaded() {

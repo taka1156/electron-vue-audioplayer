@@ -17,17 +17,28 @@
 </template>
 
 <script>
+import { colors } from '@/constants/index.js';
+
+function colorCodeToName(target) {
+  if (target == null) {
+    return 'black';
+  } else {
+    const initColor = colors.find(color => color.value === target);
+    return initColor.name;
+  }
+}
+
+function colorNameToCode(target) {
+  const colorCode = colors.find(color => color.name === target);
+  return colorCode.value;
+}
+
 export default {
   name: 'ColorSelecter',
   props: {
     id: {
       type: String,
       default: '',
-      required: true
-    },
-    colors: {
-      type: Array,
-      default: () => [],
       required: true
     },
     initColor: {
@@ -38,12 +49,13 @@ export default {
   },
   data() {
     return {
-      selectColor: this.initColor
+      selectColor: colorCodeToName(this.initColor),
+      colors: colors
     };
   },
   methods: {
     setColor() {
-      this.$emit('set-color', this.selectColor);
+      this.$emit('set-color', colorNameToCode(this.selectColor));
     }
   }
 };

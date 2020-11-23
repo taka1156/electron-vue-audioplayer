@@ -1,7 +1,7 @@
 <template>
-  <div class="Setting">
+  <div>
     <div class="center">
-      <h4 @click="runBrowser">設定</h4>
+      <h4>設定</h4>
       <hr />
       <!--設定の操作UI-->
       <toggle-switch
@@ -13,8 +13,7 @@
       </toggle-switch>
       <color-selecter
         :id="'window-color'"
-        :colors="colors"
-        :init-color="initColor"
+        :init-color="setting.backgroundColor"
         @set-color="setColor"
       >
         色変更
@@ -37,20 +36,6 @@ import ToggleSwitch from '@/components/atoms/ToggleSwitch';
 import ColorSelecter from '@/components/atoms/ColorSelector';
 import { updateWindowSetting } from '@/plugins/ElectronRemote.js';
 
-function colorNameToCode(colors, target) {
-  if (target == null) {
-    return 'black';
-  } else {
-    const initColor = colors.find(color => color.value === target);
-    return initColor.name;
-  }
-}
-
-function colorCodeToName(colors, target) {
-  const colorCode = colors.find(color => color.name === target);
-  return colorCode.value;
-}
-
 export default {
   name: 'Setting',
   components: {
@@ -63,24 +48,8 @@ export default {
         alwaysOnTop: false,
         backgroundColor: '#000000'
       },
-      colors: [
-        { name: 'black', value: '#000000' },
-        { name: 'tomato', value: '#ff6347' },
-        { name: 'forestgreen', value: '#228b22' },
-        { name: 'cornflowerblue', value: '#6495ed' },
-        { name: 'navy', value: '#000080' },
-        { name: 'gold', value: '#ffd700' },
-        { name: 'orange', value: '#ffa500' },
-        { name: 'purple', value: '#9400d3' },
-        { name: 'pink', value: '#ffc0cb' }
-      ],
       msg: ''
     };
-  },
-  computed: {
-    initColor() {
-      return colorNameToCode(this.colors, this.setting.backgroundColor);
-    }
   },
   created() {
     const LOCAL_DATA = localStorage.getItem('AudioSetting');
@@ -93,7 +62,7 @@ export default {
   },
   methods: {
     setColor(color) {
-      this.setting.backgroundColor = colorCodeToName(this.colors, color);
+      this.setting.backgroundColor = color;
     },
     saveSetting(msg) {
       localStorage.setItem('AudioSetting', JSON.stringify(this.setting));
@@ -111,10 +80,6 @@ export default {
         this.msg = '';
         clearTimeout(init);
       }, 1000);
-    },
-    runBrowser() {
-      console.log('browser test');
-      window.open(location.href, null, 'top=100,left=100,width=280,height=470');
     }
   }
 };

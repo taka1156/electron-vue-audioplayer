@@ -1,7 +1,7 @@
 <template>
-  <div class="Help">
+  <div>
     <div class="center">
-      <h4>使い方</h4>
+      <h4 @click="runBrowser">使い方</h4>
       <hr />
       <ul>
         <p>詳しい情報は、githubページをみてください</p>
@@ -20,7 +20,13 @@
 
 <script>
 export default {
-  name: 'Help'
+  name: 'Help',
+  methods: {
+    runBrowser() {
+      console.log('browser test');
+      window.open(location.href, null, 'top=100,left=100,width=280,height=470');
+    }
+  }
 };
 </script>
 

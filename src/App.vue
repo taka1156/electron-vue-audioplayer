@@ -1,18 +1,17 @@
 <template>
   <div id="app">
     <router-view class="view"></router-view>
-    <audio-navigation :routes="routes" />
+    <the-navigation :routes="routes" />
   </div>
 </template>
 
 <script>
-import AudioNavigation from '@/components/organisms/AudioNavigation';
-import 'normalize.css';
+import TheNavigation from '@/components/organisms/TheNavigation';
 
 export default {
   name: 'AudioPlayer',
   components: {
-    'audio-navigation': AudioNavigation
+    'the-navigation': TheNavigation
   },
   data() {
     return {

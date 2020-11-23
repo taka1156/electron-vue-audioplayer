@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="load">
-      <p v-show="playlistLen !== 0" class="load__text">
+    <div class="audio-load">
+      <p v-show="playlistLen !== 0" class="audio-load__text">
         {{ playlistLen + 1 }}曲目を読み込み中...
       </p>
-      <div class="load__spinner"></div>
+      <div class="audio-load__spinner"></div>
     </div>
   </div>
 </template>
@@ -23,18 +23,18 @@ export default {
 </script>
 
 <style scoped>
-.load {
+.audio-load {
   margin: 35vh auto;
 }
 
-.load__text {
+.audio-load__text {
   font-size: 15px;
   text-align: center;
 }
 
 /* 待機時のスピナー表示 */
 
-.load__spinner {
+.audio-load__spinner {
   width: 100px;
   height: 100px;
   margin: 0 auto;
