@@ -1,5 +1,5 @@
 <template>
-  <div class="NaviBar">
+  <div>
     <nav>
       <nav-list :routes="routes" />
     </nav>
@@ -10,7 +10,7 @@
 import NavList from '../molecules/NavList';
 
 export default {
-  name: 'NaviBar',
+  name: 'TheNavigation',
   components: {
     'nav-list': NavList
   },
